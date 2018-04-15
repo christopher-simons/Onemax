@@ -6,6 +6,6 @@ and could be considered a simple introductory problem for
 evolutionary computing. This implementation is a genetic algorithm.
 
 This repository comprises three files:
-  individual.py - a class representing an individual bitstring.
-  onemax.py - the implementation of the algorithm.
+  individual.py - a class representing an individual bitstring;
+  onemax.py - the implementation of the algorithm; and
   one_max_results.plot - a gnuplot script for plotting the fitness curves acheived.
