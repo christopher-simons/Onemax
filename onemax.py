@@ -1,5 +1,5 @@
 #	File: 	onemax.py
-#	Date:	15 April 2018
+#	Date:	6 May 2018
 #	Author: Chris Simons
 #
 #	OneMax - the ”hello world” of evolutionary computing?
@@ -29,9 +29,12 @@ import _random
 
 #	algorithm parameters	
 genotype_size = 100
-num_gen = 20
 pop_size = 100
 xover_rate = 0.75
+
+#	these parameters are also used by onemax_batch.py
+num_gen = 25
+num_runs = 25
 
 #	-----------------------------------------------------------------
 
@@ -40,7 +43,8 @@ def show_average_population_fitness( population ):
 	for ind in population:
 #		ind.calc_fitness( )
 		sum += ind.fitness
-	print( '\taverage population fitness is: {0}'.format( sum / pop_size ) )
+	print( 'sum is: {0}'.format( sum ) )
+	print( '\taverage population fitness is: {0:.3f}'.format( sum / pop_size ) )
   
   
 #	-----------------------------------------------------------------
@@ -220,43 +224,45 @@ def write_generation_results_to_file( a_file, n, population ):
 	
 	a_file.write( '{0} {1} {2} {3} \n'.format( n, worst, ave, best ) )
 
+
 #	-----------------------------------------------------------------
-#	evolution begins here by initialising population at random
+#	evolution begins here for a number of runs
 #	-----------------------------------------------------------------
 
 population = [ ]
 mating_pool = [ ] 
 
-n = 0
-while n < pop_size:
-	ind = Individual( genotype_size )  
-	population.append( ind )
-	n += 1
-
-#	firstly evaluate each individual
-print( '\n' )
-print( 'population initialised' )
-evaluate( population )
-show_average_population_fitness( population )
-
 #	set up a text file to record results
 a_file = open( 'onemax_results.dat', mode = 'a', encoding = 'utf-8' )
 
-#	the generational loop 
-n = 1
-while n <= num_gen:
-	print( '\tgeneration number: {0}'.format( n ) )
-	select_parents( population, mating_pool )
-	recombine( mating_pool )
-	mutate( mating_pool )
-	evaluate( mating_pool )
-	select_candidates_for_next_generation( population, mating_pool )	
-	show_average_population_fitness( population )
-	write_generation_results_to_file( a_file, n, population )
-	n += 1
+#	the run loop
+run = 0
+while run < num_runs:
+	print( 'in run number: {0}'.format( run ) ) 
+	population.clear( )
+	n = 0
+	while n < pop_size:
+		ind = Individual( genotype_size )  
+		population.append( ind )
+		n += 1
+	evaluate( population )
+	#	the generational loop 
+	n = 1
+	while n <= num_gen:
+		print( '\tgeneration number: {0}'.format( n ) )
+		select_parents( population, mating_pool )
+		recombine( mating_pool )
+		mutate( mating_pool )
+		evaluate( mating_pool )
+		select_candidates_for_next_generation( population, mating_pool )
+		evaluate( population ) 	
+		show_average_population_fitness( population )
+		write_generation_results_to_file( a_file, n, population )
+		n += 1
+	run += 1
 
 #	lastly, show the final population
-n = 0
-while n < pop_size:
-	print( population[ n ].barr )
-	n += 1
+#n = 0
+#while n < pop_size:
+#	print( population[ n ].barr )
+#	n += 1
