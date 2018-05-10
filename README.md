@@ -6,7 +6,7 @@ The Onemax problem involves evolving a string of bits from a random initialisati
 This repository comprises the following python files:
 
 individual.py - a class representing an individual bitstring;
-onemax.py - the implementation of the generationl evolutionary algorithm; and
+onemax.py - the implementation of the generational evolutionary algorithm; and
 onemax_batch.py - a file to read the results output of onemax.py for multiple runs, and then calculate the mean results based on multiple runs of the algorithm, to be suitable for easy plotting with gnuplot (or any other plotting software). 
 
 The repository also contains a gnuplot script for plotting the fitness curves achieved over multiple runs, onemax_batch_results.plot.
