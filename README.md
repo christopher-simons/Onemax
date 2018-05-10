@@ -11,6 +11,6 @@ onemax_batch.py - a file to read the results output of onemax.py for multiple ru
 
 The repository also contains a gnuplot script for plotting the fitness curves achieved over multiple runs, onemax_batch_results.plot.
 
-Firstly, run onemax.py to execute the algorithm over multiple runs. Then, secondly, run onemax_batch.py to read the results and then calculate the mean results of multiple runs. The resulting out put file can then be used with onemax_batch_results.plot to give a nice plot of the fitness curves for worst, average, and best fitness values in the population. 
+Firstly, run onemax.py to execute the algorithm over multiple runs. Then, secondly, run onemax_batch.py to read the results and then calculate the mean results of multiple runs. The resulting output file can then be used with onemax_batch_results.plot to give a nice plot of the fitness curves for worst, average, and best fitness values in the population. 
 
 It's important to set the parameter 'num_gen' (the number of generations in a single run of the algorithm) to be the same value in both onemax.py and onemax_batch.py. 
